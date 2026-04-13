@@ -1,53 +1,62 @@
 ---
 phase: 2
-level: 2
+level: 3
 researched_at: 2026-04-13
 ---
 
-# Phase 2 Research: User/Customer Core & AI Widget MVP
+# Phase 2 Research: User/Customer Core & AI Widget MVP (Level 3 Deep Dive)
 
 ## Questions Investigated
-1. **Authentication:** Should we build custom Auth (NestJS+Passport) or integrate a third-party service (Clerk/Auth0)?
-2. **Customer 360 Scope:** For Phase 2 MVP, what data should be managed for Customers?
-3. **AI Widget Architecture:** How should the AI Widget be embedded into any website?
-4. **RAG implementation:** Manual document upload vs Auto Web Crawl for MVP?
+1. **Authentication:** NestJS + Passport + JWT implementation patterns?
+2. **Customer 360 Scope:** Extensibility of MVP data?
+3. **AI Widget Architecture:** Best practice for SaaS independent JS library injection?
+4. **RAG implementation:** How to integrate `pgvector` with Prisma (which lacks native vector support) and Gemini via `@google/genai` inside NestJS?
 
 ## Findings
 
 ### Topic 1: Authentication Approach
-- **Context:** AutoFlow aims to be an internal tool / SaaS platform.
-- **Finding:** A custom JWT-based authentication using `@nestjs/passport` and `passport-jwt` on the NestJS backend keeps the platform fully self-hosted without vendor lock-in or recurring user-based fees. 
-- **Recommendation:** Implement standard JWT Auth (Login/Register, Token Validation).
+- **Recommendation:** Implement standard JWT Auth with `@nestjs/passport`. It gives complete control over the token lifecycle and fits the current stack without any vendor limitations. Use a simple `/auth/login` endpoint that issues the token. It's lightweight and secure.
 
-### Topic 2: Customer 360 Scope for Phase 2
-- **Context:** Phase 3 introduces Web Tracking (events).
-- **Finding:** Currently, we only need the Customer's base profile to link them with the AI chat sessions. Interactions and event streams will be introduced later.
-- **Recommendation:** Define the `Customer` table with basic fields (Name, Email, Phone) and a `metadata` JSONB column for future extensibility before full tracking is ready.
+### Topic 2: Customer 360 Scope
+- **Recommendation:** Start with basic fields (`name`, `email`, `phone`) and a `metadata JsonB` column. The `JsonB` column is crucial for AutoFlow as it allows us to store arbitrary dimensions (tags, origin, custom widget state) per customer before the heavy Tracking feature in Phase 3.
 
 ### Topic 3: AI Web Widget Architecture
-- **Context:** The Widget needs to be embeddable on external websites without CSS conflicts.
-- **Finding:** Compiling a React component directly as a `.js` library can be complex (CSS scoping, bundle size). The simplest, most robust method for SaaS widgets is an **iframe injection script**. A lightweight JS file (e.g., `widget.js`) simply creates an `<iframe>` pointing to a publicly accessible Next.js route (e.g., `/widget/[id]`). 
-- **Recommendation:** Build the Widget UI in Next.js as a standalone page (e.g., `app/widget/page.tsx`). Serve an `embed.js` script that creates an iframe pointing to this page.
+- **Recommendation:** **Iframe Injection**. To fulfill the requirement of "thư viện JS độc lập chèn vào web bất kỳ", we cannot risk relying on injecting Tailwind classes directly into the host's DOM (they will be overridden or break the host site). 
+  - Solution: An `embed.js` (vanilla JS) that creates an `<iframe>` targeting `https://[our-domain]/widget/chat`. This isolates our React/Next component from the host DOM entirely.
+  - Interaction: Use `window.postMessage` if the host site needs to send user identity to our iframe.
 
-### Topic 4: RAG Implementation Strategy
-- **Context:** Building the AI assistant using Gemini and `pgvector`.
-- **Finding:** Web crawling is complex (anti-bots, parsing errors). For an MVP, taking raw text or PDF documents, chunking them, and converting them to vectors is much more controlled and reliable.
-- **Recommendation:** Start with Manual Text/Document Upload. Ensure `pgvector` indexing (`HNSW` or `IVFFlat`) is set up correctly in Prisma.
+### Topic 4: RAG Implementation Strategy (Prisma + pgvector + Gemini)
+- **Context:** Prisma v6/v7 does not have native distance operators for `pgvector`.
+- **Finding:** We must use `Unsupported` types in the Prisma schema and Raw SQL strings.
+- **Implementation Path:**
+  1. **Schema:** Define embedding field as `Unsupported("vector(768)")` (Gemini's `text-embedding-004` output dimension is 768).
+  2. **Migration:** Run `prisma migrate dev --create-only` and add `CREATE EXTENSION IF NOT EXISTS vector;` manually.
+  3. **Embedding Generation:** Use `@google/genai` SDK `client.models.embedContent({ model: 'text-embedding-004', contents: text })` inside a NestJS service.
+  4. **Vector Search:** Use Prisma's `$queryRaw` to do similarity search:
+     ```typescript
+     await prisma.$queryRaw`
+       SELECT id, content, 1 - (embedding <=> ${vector}::vector) AS similarity
+       FROM "Document"
+       ORDER BY similarity DESC
+       LIMIT 5;
+     `;
+     ```
 
 ## Decisions Made
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Authentication | Custom JWT (NestJS) | Zero vendor lock-in, customizable RBAC, fits current stack. |
-| Widget Architecture | Iframe Injection | Guarantees CSS isolation from the host website and allows leveraging Next.js React components directly. |
-| RAG Input | Manual Upload | Lower complexity for MVP, ensures high relevance of context data. |
+| Authentication | Custom JWT (NestJS) | As confirmed by user, gives full internal control. |
+| Widget Architecture | JS Library -> Iframe | Safest SaaS embedding method. Isolates React/Tailwind styling from external host pages. |
+| RAG Storage | pgvector in Prisma | Keeps infrastructure simple (no external pinecone). Raw SQL queries needed but manageable. |
+| GenAI SDK | `@google/genai` | Official Google wrapper, API key `AIzaSy...` added to backend environment. |
 
 ## Patterns to Follow
-- **Iframe Message Passing:** Use `window.postMessage` to communicate between the host site and the Next.js iframe if needed (e.g., to pass a customer identifier).
-- **Service Layer (NestJS):** Keep the Gemini LLM and `pgvector` embedding logic completely inside NestJS services securely.
+- **Raw SQL Encapsulation:** All Prisma `$queryRaw` logic for pgvector MUST be encapsulated in a dedicated NestJS Service (e.g. `VectorService` or `KnowledgeBaseService`). Controllers should never write Raw SQL.
+- **Iframe CSS:** Ensure the Next.js widget path doesn't have the standard dashboard layout, but a transparent/floating layout.
 
 ## Anti-Patterns to Avoid
-- **Leaking API Keys:** Do not put the Gemini API key anywhere near the Next.js frontend code. All requests must go through the NestJS backend.
-- **Injecting React into host DOM:** Avoid serving a fat React bundle for direct DOM injection on client sites unless using proper Shadow DOM, as host CSS will break the widget layout.
+- **Generating Embeddings on Frontend:** Do not expose the Gemini API key. All RAG logic happens on NestJS.
+- **Shadow DOM for React:** Avoid using complex Shadow DOM injectors for the entire Next.js app in the widget. Iframe is drastically simpler and more reliable.
 
 ## Dependencies Identified
 | Package | Version | Purpose |
@@ -56,13 +65,10 @@ researched_at: 2026-04-13
 | passport-jwt | ^4.0.0 | JWT validation strategy |
 | @google/genai | latest | Google Gemini Official SDK |
 | pgvector | database extension | PostgreSQL Vector Search |
-| multer (types) | latest | For NestJS file upload handling (if PDFs) |
 
 ## Risks
-- **Vector Search Performance:** Unoptimized vector searches can lock up the DB.
-  - *Mitigation:* Limit chunk sizes and implement HNSW index on the vector column.
-- **Cross-Origin Embeds (Iframe):** Browsers might block cookies in cross-origin iframes.
-  - *Mitigation:* Pass session identifiers via URL parameters for the chat widget, avoiding reliance on 3rd-party cookies for anonymous widget users.
+- **Dimension Mismatch:** Gemini text-embedding-004 uses 768 dimensions. If `vector(1536)` is set in Prisma, the database will throw errors.
+  - *Mitigation:* Ensure Prisma column definition strictly matches Gemini embedding output length (`vector(768)`).
 
 ## Ready for Planning
 - [x] Questions answered
