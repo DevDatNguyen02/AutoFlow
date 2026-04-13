@@ -1,7 +1,40 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { authApi } from '../../lib/api';
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const data = await authApi.login({ email, password });
+      
+      // Lưu token và thông tin user
+      localStorage.setItem('auth_token', data.access_token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+
+      // Chuyển hướng sang Dashboard
+      router.push('/');
+      router.refresh();
+    } catch (err: any) {
+      setError(err.message || 'Email hoặc mật khẩu không đúng');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="bg-surface text-on-background min-h-screen flex items-center justify-center p-6 relative">
       <main className="w-full max-w-[480px]">
@@ -21,7 +54,15 @@ export default function LoginPage() {
               <h2 className="text-2xl font-bold text-on-surface mb-1">Chào mừng quay trở lại</h2>
               <p className="text-sm text-on-surface-variant">Vui lòng nhập thông tin để đăng nhập</p>
             </div>
-            <form className="space-y-6">
+
+            {error && (
+              <div className="mb-6 p-4 bg-error-container text-on-error-container text-sm rounded-lg flex items-center gap-2">
+                <span className="material-symbols-outlined text-sm">error</span>
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email Field */}
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-on-surface" htmlFor="email">Địa chỉ Email</label>
@@ -32,6 +73,10 @@ export default function LoginPage() {
                     name="email" 
                     placeholder="name@company.com" 
                     type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isLoading}
                   />
                 </div>
               </div>
@@ -48,16 +93,23 @@ export default function LoginPage() {
                     name="password" 
                     placeholder="••••••••" 
                     type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
                   />
                 </div>
               </div>
               {/* Actions */}
               <div className="space-y-4 pt-2">
                 <button 
-                  className="w-full h-12 primary-gradient text-on-primary font-bold rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all" 
+                  className="w-full h-12 primary-gradient text-on-primary font-bold rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" 
                   type="submit"
+                  disabled={isLoading}
                 >
-                  Đăng nhập
+                  {isLoading ? (
+                    <div className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin"></div>
+                  ) : 'Đăng nhập'}
                 </button>
                 <div className="relative py-4">
                   <div className="absolute inset-0 flex items-center">
