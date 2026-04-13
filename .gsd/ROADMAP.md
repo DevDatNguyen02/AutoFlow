@@ -11,19 +11,22 @@
 - [ ] Flow Builder (React Flow) và Queue Execution (BullMQ).
 - [ ] Voucher Hub & Campaign Execution.
 
-## Phases
-
-### Phase 1: Foundation, User/Customer Core & AI Widget MVP
+### Phase 1: Database Schema & Frontend Template Integration
 **Status**: ⬜ Not Started
-**Objective**: Khởi tạo Core Model, Authentication, quản lý Customer và ra mắt Web Widget kết nối Gemini RAG để tư vấn tự động.
-**Requirements**: REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-09
+**Objective**: Thiết kế và hoàn thiện toàn bộ Database model trong `backend/prisma/schema.prisma`. Chuyển đổi và tích hợp tất cả các mẫu HTML/CSS từ thư mục `/template` vào ứng dụng Next.js.
+**Requirements**: REQ-01, REQ-02, REQ-09
 
-### Phase 2: Web Tracking & Automation Flow Engine
+### Phase 2: User/Customer Core & AI Widget MVP
 **Status**: ⬜ Not Started
-**Objective**: Cài đặt Tracking Script nhận event về hệ thống, xây dựng giao diện Flow Builder, tích hợp Redis+BullMQ để xử lý event.
-**Requirements**: REQ-06, REQ-07, REQ-08, REQ-09
+**Objective**: Phát triển các API cốt lõi về Authentication, quản lý Customer và ra mắt Web Widget hiển thị với khả năng kết nối Gemini RAG để tư vấn tự động.
+**Requirements**: REQ-01, REQ-02, REQ-03, REQ-04, REQ-05
 
-### Phase 3: Campaign Execution & Voucher Hub
+### Phase 3: Web Tracking & Automation Flow Engine
 **Status**: ⬜ Not Started
-**Objective**: Hệ thống quản lý Voucher, đẩy chiến dịch tự động qua kênh Email/Zalo.
-**Requirements**: REQ-09, REQ-10
+**Objective**: Cài đặt Tracking Script nhận event về hệ thống, xây dựng giao diện Flow Builder (Xyflow), và tích hợp Redis+BullMQ để xử lý event trigger.
+**Requirements**: REQ-06, REQ-07, REQ-08
+
+### Phase 4: Campaign Execution & Voucher Hub
+**Status**: ⬜ Not Started
+**Objective**: Hoàn thiện hệ thống quản lý Voucher, đẩy chiến dịch tự động qua kênh Email/Zalo từ các Automation Flows.
+**Requirements**: REQ-10
