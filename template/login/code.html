@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoFlow - Professional Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#625b77",
+                    "secondary-dim": "#465468",
+                    "on-tertiary": "#fdf7ff",
+                    "surface-container-highest": "#d9e2ff",
+                    "inverse-surface": "#060e20",
+                    "primary-dim": "#0048c1",
+                    "tertiary-dim": "#564f6b",
+                    "on-tertiary-fixed-variant": "#59526e",
+                    "on-error": "#fff7f6",
+                    "primary-container": "#dbe1ff",
+                    "tertiary-fixed": "#dfd5f7",
+                    "primary": "#0053db",
+                    "secondary-container": "#d5e3fc",
+                    "on-primary-fixed-variant": "#0050d4",
+                    "error": "#9f403d",
+                    "on-tertiary-container": "#4f4964",
+                    "on-error-container": "#752121",
+                    "secondary": "#526074",
+                    "surface-container": "#eaedff",
+                    "on-secondary-fixed-variant": "#4e5c71",
+                    "on-secondary": "#f8f8ff",
+                    "on-surface-variant": "#445d99",
+                    "on-background": "#113069",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#003798",
+                    "outline-variant": "#98b1f2",
+                    "surface": "#faf8ff",
+                    "surface-dim": "#cdd9ff",
+                    "on-secondary-container": "#455367",
+                    "on-tertiary-fixed": "#3c3650",
+                    "primary-fixed-dim": "#c7d3ff",
+                    "on-primary": "#f8f7ff",
+                    "outline": "#6079b7",
+                    "surface-container-low": "#f2f3ff",
+                    "secondary-fixed-dim": "#c7d5ed",
+                    "primary-fixed": "#dbe1ff",
+                    "error-container": "#fe8983",
+                    "surface-container-high": "#e2e7ff",
+                    "inverse-on-surface": "#959cb5",
+                    "inverse-primary": "#618bff",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed": "#324053",
+                    "surface-bright": "#faf8ff",
+                    "secondary-fixed": "#d5e3fc",
+                    "on-primary-container": "#0048bf",
+                    "surface-variant": "#d9e2ff",
+                    "tertiary-fixed-dim": "#d0c7e8",
+                    "error-dim": "#4e0309",
+                    "surface-tint": "#0053db",
+                    "tertiary-container": "#dfd5f7",
+                    "on-surface": "#113069"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #0053db 0%, #0048c1 100%);
+        }
+        .glass-overlay {
+            backdrop-filter: blur(12px);
+            background: rgba(250, 248, 255, 0.8);
+        }
+        .shadow-ambient {
+            box-shadow: 0 20px 40px -10px rgba(17, 48, 105, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background min-h-screen flex items-center justify-center p-6">
+<!-- Login Container -->
+<main class="w-full max-w-[480px]">
+<!-- Brand Identity Section -->
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary-container mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">AutoFlow</h1>
+<p class="text-on-surface-variant font-medium">Automation Ecosystem</p>
+</div>
+<!-- Authentication Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-ambient overflow-hidden">
+<div class="p-10">
+<div class="mb-8">
+<h2 class="text-2xl font-bold text-on-surface mb-1">Welcome back</h2>
+<p class="text-sm text-on-surface-variant">Please enter your details to sign in</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface" for="email">Email Address</label>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline-variant/20 focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim outline-none transition-all placeholder:text-outline/50 text-on-surface" id="email" name="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-semibold text-on-surface" for="password">Password</label>
+<a class="text-sm font-medium text-primary hover:text-primary-dim transition-colors" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline-variant/20 focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim outline-none transition-all placeholder:text-outline/50 text-on-surface" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-4 pt-2">
+<button class="w-full h-12 primary-gradient text-on-primary font-bold rounded-lg shadow-sm hover:opacity-95 active:scale-[0.98] transition-all" type="submit">
+                            Sign In
+                        </button>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/20"></div>
+</div>
+<div class="relative flex justify-center text-xs">
+<span class="bg-surface-container-lowest px-4 text-on-surface-variant font-medium uppercase tracking-wider">Or continue with</span>
+</div>
+</div>
+<button class="w-full h-12 flex items-center justify-center gap-3 bg-surface border border-outline-variant/20 rounded-lg text-on-surface font-semibold hover:bg-surface-container-low transition-colors active:scale-[0.98]" type="button">
+<img alt="Google Logo" class="w-5 h-5" data-alt="clean vector representation of the Google multicolored logo on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXXniJo3w0H6R4iSzTiO0qOM65QvTEjUB_HNyznNVeDIGhP522_K5EtdqIIbRMHzjhROO7pVn7RBGba0rAfAVCloEqLudVX9Ml5p3cdHjlULJ0tMr5nmBy5mn8P50VJNtNdLGx74jfRwsSxTC4USrRtZNjUbmS9ZPhLdnnT5exDH-v08ZxNmMedmAZ29S0THs7UfrZJ_KhC7sm2AVA2IMsezC_DqOxL5j2sCKbXc77JTqgIONzyJE_W9qPhkSb6uAHpTLxmORn2zrh"/>
+                            Sign in with Google
+                        </button>
+</div>
+</form>
+</div>
+<!-- Footer Section -->
+<div class="bg-surface-container-low p-6 text-center">
+<p class="text-sm text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="text-primary font-bold hover:underline" href="#">Create Account</a>
+</p>
+</div>
+</div>
+<!-- Global Decorative Background Elements -->
+<div class="fixed -z-10 top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-primary-container/20 blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] rounded-full bg-secondary-container/20 blur-[120px]"></div>
+</div>
+<!-- Auxiliary Links -->
+<div class="mt-8 flex justify-center gap-8">
+<a class="text-xs font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-xs font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</main>
+</body></html>

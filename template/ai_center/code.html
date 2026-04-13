@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Center - AutoFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#003798",
+                    "surface-variant": "#d9e2ff",
+                    "inverse-on-surface": "#959cb5",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#752121",
+                    "secondary-container": "#d5e3fc",
+                    "primary-fixed-dim": "#c7d3ff",
+                    "error": "#9f403d",
+                    "outline-variant": "#98b1f2",
+                    "on-tertiary": "#fdf7ff",
+                    "tertiary-fixed": "#dfd5f7",
+                    "on-secondary-fixed": "#324053",
+                    "inverse-surface": "#060e20",
+                    "error-container": "#fe8983",
+                    "primary-container": "#dbe1ff",
+                    "on-secondary-container": "#455367",
+                    "on-tertiary-fixed": "#3c3650",
+                    "tertiary-dim": "#564f6b",
+                    "primary-dim": "#0048c1",
+                    "tertiary-container": "#dfd5f7",
+                    "on-surface": "#113069",
+                    "background": "#faf8ff",
+                    "inverse-primary": "#618bff",
+                    "surface-bright": "#faf8ff",
+                    "tertiary": "#625b77",
+                    "on-tertiary-container": "#4f4964",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed-variant": "#0050d4",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-container-high": "#e2e7ff",
+                    "on-error": "#fff7f6",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-container-highest": "#d9e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0053db",
+                    "outline": "#6079b7",
+                    "on-primary": "#f8f7ff",
+                    "error-dim": "#4e0309",
+                    "surface-container": "#eaedff",
+                    "surface-dim": "#cdd9ff",
+                    "secondary-dim": "#465468",
+                    "on-background": "#113069",
+                    "on-primary-container": "#0048bf",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#445d99",
+                    "on-secondary": "#f8f8ff",
+                    "on-secondary-fixed-variant": "#4e5c71",
+                    "secondary": "#526074",
+                    "on-tertiary-fixed-variant": "#59526e",
+                    "tertiary-fixed-dim": "#d0c7e8",
+                    "secondary-fixed-dim": "#c7d5ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar Shell -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-slate-50 flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2">
+<h1 class="text-xl font-bold text-blue-700 tracking-tight">AutoFlow</h1>
+<p class="text-xs text-on-surface-variant">Automation Ecosystem</p>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-blue-50/50 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-blue-50/50 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">Audience</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-blue-50/50 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-sm font-medium">Automation</span>
+</a>
+<!-- Active Tab: AI Center -->
+<a class="flex items-center gap-3 px-3 py-2 text-blue-700 font-semibold bg-blue-50/50 rounded-xl" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm font-medium">AI Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-blue-50/50 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="text-sm font-medium">Vouchers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-blue-50/50 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-6 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="Professional headshot of a smiling man in a business casual outfit, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdL14Hy9P7FJoP3iSGhWzK1THSzNaoLE8oe1lkxCVcl83rwWslvvUDF6yd4kLnaHTgH_zMkbcxaZlPfZFpTTL0BmiknJbWt7omqZt-1HwH7rzJMff2AK_LHl9J-6atrY3T4DJZyqqCCD0bfgtTidz0wNHDMayiHZKeEDvuAowxTVAcXmpgKBfKjXSXB3EYrbWSUUu1XgO2-w6ZAZUBeOD6bsZI5D4hLqHx_9-hJEJEBU8fulglLy7VlMC54eEzZrZbf0HKSjgm7T3Y"/>
+</div>
+<div>
+<p class="text-sm font-bold">Admin User</p>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant">Standard Plan</p>
+</div>
+</div>
+</nav>
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center h-16 px-8 ml-64 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary" placeholder="Search knowledge base..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-500 hover:text-blue-600 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 min-h-[calc(100vh-64px)] bg-surface">
+<div class="max-w-7xl mx-auto space-y-10">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<span class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase">Workspace</span>
+<h2 class="text-4xl font-extrabold text-on-surface tracking-tight mt-1">AI Center</h2>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-xl text-sm font-semibold text-on-secondary-container bg-secondary-container hover:opacity-90 transition-all">
+                        Preview Bot
+                    </button>
+<button class="px-6 py-2.5 rounded-xl text-sm font-semibold text-on-primary bg-gradient-to-br from-primary to-primary-dim shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        Publish Changes
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Knowledge Base Section (Left Span 8) -->
+<section class="col-span-8 space-y-8">
+<div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold tracking-tight">Knowledge Base</h3>
+<p class="text-sm text-on-surface-variant">Train your AI with your own business data</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">database</span>
+</div>
+<!-- Upload Area -->
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="border-2 border-dashed border-outline-variant/30 rounded-2xl p-8 flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors cursor-pointer bg-surface-container-low/30">
+<span class="material-symbols-outlined text-3xl text-on-surface-variant mb-3 group-hover:text-primary transition-colors">upload_file</span>
+<p class="text-sm font-semibold">Upload Documents</p>
+<p class="text-xs text-on-surface-variant mt-1">PDF, DOCX up to 10MB</p>
+</div>
+<div class="bg-surface-container-low/30 rounded-2xl p-8 flex flex-col gap-4">
+<div>
+<p class="text-sm font-semibold mb-1">Crawl Website</p>
+<p class="text-xs text-on-surface-variant">Index pages from a public URL</p>
+</div>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-primary outline-none" placeholder="https://example.com" type="text"/>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:bg-primary-dim">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Indexed Sources List -->
+<div class="space-y-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Indexed Sources</h4>
+<div class="space-y-2">
+<!-- Source Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-2xl group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold">Service_Level_Agreement_2024.pdf</p>
+<p class="text-[11px] text-on-surface-variant">Last synced: 2 hours ago • 2.4 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
+                                            Active
+                                        </div>
+<button class="text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+<!-- Source Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-2xl group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl">language</span>
+</div>
+<div>
+<p class="text-sm font-semibold">https://help.autoflow.io/faq</p>
+<p class="text-[11px] text-on-surface-variant">Last synced: 1 day ago • 42 pages</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>
+                                            Active
+                                        </div>
+<button class="text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat History Preview -->
+<div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold tracking-tight">Recent Conversations</h3>
+<p class="text-sm text-on-surface-variant">Monitor AI interactions in real-time</p>
+</div>
+<button class="text-sm font-bold text-primary hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Conversation 1 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant/10 rounded-2xl hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a professional woman with a friendly expression, soft natural daylight, office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA69EMXR9d9sBmWOQ-KGJCEb7DJ5H8QWjhMhi17z8hSgVdUQ4dP6JVkfQOX0gIjh1217UmWaQfRlOnZNCLZ-R2lGfiaXffwNOFbVBekOtfVs7UWIGiVKff3qeVK7Qy3nOypO3wS3prj8d-IdrSoCwygVIAc5rc7BeL5mB0Ww4Yu_-hxTKMmmg36ivKDFKktH9pI7XlGlYbAMIZQaq8x2LD6FrTtgaTDuP49Lfa2VqJecqN83iFjPjXYQ766Tt49BA-Z74cBpbNcwT64"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<p class="text-sm font-bold">Sarah Jenkins</p>
+<span class="text-[10px] text-on-surface-variant">15 min ago</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate w-96 italic">"I'm looking for the updated refund policy regarding enterprise subscriptions..."</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-2 ring-white">
+<span class="material-symbols-outlined text-[10px] text-on-primary">smart_toy</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Conversation 2 -->
+<div class="flex items-center gap-6 p-4 border border-outline-variant/10 rounded-2xl hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Portrait of a young man wearing glasses, looking thoughtful, studio lighting with a neutral grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXU3S_BJP9kmNZMWfMouAmY7NlW62uTF4UWU7MCOkHFQr2PvDVwJi_Q7d5hGUwqB_6QafwnPlEa0NfMYmNi0fNuFv4_xmZHmFmBZtUfxop0AYyCpiTVz6LxToyC5JmE3wHX925Lk0WFIo8DlXVSAW_87T1GAbhsT_2dnruKpQcvIyQLx7xIn7pNqbpfMSmvPVjkqJqohELXPZE0DSAGdRSPrnvI4K0uc6vI3ENxzQKoCrJFUmVU7GRg10AuDUHH5rPVR5y6fOpKXVZ"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<p class="text-sm font-bold">Marcus Thorne</p>
+<span class="text-[10px] text-on-surface-variant">42 min ago</span>
+</div>
+<p class="text-xs text-on-surface-variant truncate w-96 italic">"Can you help me integrate the API with my existing Shopify store?"</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-2 ring-white">
+<span class="material-symbols-outlined text-[10px] text-on-primary">smart_toy</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bot Configuration (Right Span 4) -->
+<aside class="col-span-4 space-y-8">
+<div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/10 h-fit sticky top-24">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">tune</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight">Persona Engine</h3>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Bot Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary" type="text" value="AutoFlow Assistant v2"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Tone of Voice</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-4 py-2 text-xs font-semibold rounded-lg bg-primary text-on-primary" type="button">Professional</button>
+<button class="px-4 py-2 text-xs font-semibold rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" type="button">Friendly</button>
+<button class="px-4 py-2 text-xs font-semibold rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" type="button">Technical</button>
+<button class="px-4 py-2 text-xs font-semibold rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high" type="button">Concise</button>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">System Prompt</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary leading-relaxed" rows="8">You are a professional assistant for AutoFlow. Your primary goal is to help users understand our automation tools and troubleshoot workflow issues. Always remain helpful, patient, and precise. If you are unsure of an answer, direct the user to our human support team without making up information. Use data only from the provided Knowledge Base.</textarea>
+<div class="flex justify-between mt-2">
+<span class="text-[10px] text-on-surface-variant">Tokens: 420/2000</span>
+<button class="text-[10px] font-bold text-primary flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[12px]">auto_fix</span>
+                                        Optimize with AI
+                                    </button>
+</div>
+</div>
+<div class="pt-4 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">memory</span>
+<span class="text-xs font-semibold">Short-term Memory</span>
+</div>
+<div class="w-10 h-5 bg-primary/20 rounded-full relative p-0.5 cursor-pointer">
+<div class="w-4 h-4 bg-primary rounded-full absolute right-0.5"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">translate</span>
+<span class="text-xs font-semibold">Multi-language Support</span>
+</div>
+<div class="w-10 h-5 bg-slate-200 rounded-full relative p-0.5 cursor-pointer">
+<div class="w-4 h-4 bg-white rounded-full absolute left-0.5"></div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 mt-4 bg-primary-fixed text-on-primary-fixed rounded-2xl text-sm font-bold hover:bg-primary-fixed-dim transition-colors" type="submit">
+                                Save Bot Persona
+                            </button>
+</form>
+</div>
+<!-- Bot Analytics Mini-Card -->
+<div class="bg-gradient-to-br from-inverse-surface to-slate-800 rounded-3xl p-6 text-white shadow-xl">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">Performance Summary</p>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-2xl font-bold tracking-tight">94%</p>
+<p class="text-[10px] text-slate-400 font-medium">Resolution Rate</p>
+</div>
+<div>
+<p class="text-2xl font-bold tracking-tight">1.2s</p>
+<p class="text-[10px] text-slate-400 font-medium">Avg Response</p>
+</div>
+</div>
+<div class="mt-6 h-1 w-full bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94%]"></div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on this detail-heavy screen as per guidelines, but defined if needed for primary navigation) -->
+</body></html>

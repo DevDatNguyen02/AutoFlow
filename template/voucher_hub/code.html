@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoFlow | Voucher Hub &amp; Campaigns</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#003798",
+                    "surface-variant": "#d9e2ff",
+                    "inverse-on-surface": "#959cb5",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#752121",
+                    "secondary-container": "#d5e3fc",
+                    "primary-fixed-dim": "#c7d3ff",
+                    "error": "#9f403d",
+                    "outline-variant": "#98b1f2",
+                    "on-tertiary": "#fdf7ff",
+                    "tertiary-fixed": "#dfd5f7",
+                    "on-secondary-fixed": "#324053",
+                    "inverse-surface": "#060e20",
+                    "error-container": "#fe8983",
+                    "primary-container": "#dbe1ff",
+                    "on-secondary-container": "#455367",
+                    "on-tertiary-fixed": "#3c3650",
+                    "tertiary-dim": "#564f6b",
+                    "primary-dim": "#0048c1",
+                    "tertiary-container": "#dfd5f7",
+                    "on-surface": "#113069",
+                    "background": "#faf8ff",
+                    "inverse-primary": "#618bff",
+                    "surface-bright": "#faf8ff",
+                    "tertiary": "#625b77",
+                    "on-tertiary-container": "#4f4964",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed-variant": "#0050d4",
+                    "surface-container-low": "#f2f3ff",
+                    "surface-container-high": "#e2e7ff",
+                    "on-error": "#fff7f6",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-container-highest": "#d9e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0053db",
+                    "outline": "#6079b7",
+                    "on-primary": "#f8f7ff",
+                    "error-dim": "#4e0309",
+                    "surface-container": "#eaedff",
+                    "surface-dim": "#cdd9ff",
+                    "secondary-dim": "#465468",
+                    "on-background": "#113069",
+                    "on-primary-container": "#0048bf",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#445d99",
+                    "on-secondary": "#f8f8ff",
+                    "on-secondary-fixed-variant": "#4e5c71",
+                    "secondary": "#526074",
+                    "on-tertiary-fixed-variant": "#59526e",
+                    "tertiary-fixed-dim": "#d0c7e8",
+                    "secondary-fixed-dim": "#c7d5ed"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.8); }
+        .primary-gradient { background: linear-gradient(135deg, #0053db 0%, #0048c1 100%); }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900 flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-2 flex items-center gap-3">
+<div class="w-8 h-8 primary-gradient rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">auto_mode</span>
+</div>
+<span class="text-xl font-bold text-blue-700 dark:text-blue-400">AutoFlow</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors font-sans text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors font-sans text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                Audience
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors font-sans text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+                Automation
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors font-sans text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                AI Center
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-blue-700 dark:text-blue-400 font-semibold bg-blue-50/50 dark:bg-blue-900/20 font-sans text-sm tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+                Vouchers
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors font-sans text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl flex items-center gap-3">
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" data-alt="Close-up professional portrait of a smiling male executive in a modern office setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG9Sty2C4QhcaAnqmkfJzo_1Xwak5_ccJILGhubUPJgVk8LPdQKxC63c37hGvVOunBI0dJOvV6FBaKlZy3limw9Lfjn3xwTZb13a5BQEOf749ExuoWIgK4qtv2XgXiGig7MpBwPPUQmNyoE0_BuhGbEqjhSYr1p2c0wpu9toha9PkfdxwpUqCyLLQyIgra0fvm8sRW5qvv4Mv1UKHiOfgU13f0VmDGk734g6JEqFF7Py56LFrnuJQx48-Je_PlJvCP5l4uy97-DC_A"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant truncate">Admin User</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-8 sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800/50">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant/50" placeholder="Search vouchers or campaigns..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-8">
+<div class="flex items-center gap-2 text-blue-700 dark:text-blue-400 font-bold font-sans text-sm">
+                    Dashboard
+                </div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-blue-600 transition-colors opacity-90 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors opacity-90 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Stage -->
+<div class="p-10 max-w-7xl mx-auto space-y-10">
+<!-- Hero Header Section -->
+<section class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Voucher Hub</h1>
+<p class="text-on-surface-variant max-w-md">Orchestrate and monitor your digital incentives across all automation flows from one command center.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-semibold text-sm hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export Report
+                    </button>
+<button class="px-6 py-3 primary-gradient text-on-primary rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add_circle</span>
+                        Create Campaign
+                    </button>
+</div>
+</section>
+<!-- Performance Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Success Rate -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12.4%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Success Rate</p>
+<h3 class="text-3xl font-extrabold text-on-surface">94.8%</h3>
+<div class="mt-4 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full primary-gradient w-[94.8%]"></div>
+</div>
+</div>
+<!-- Open Rate -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-fixed rounded-lg text-tertiary">
+<span class="material-symbols-outlined">mail_lock</span>
+</div>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+5.2%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Open Rate</p>
+<h3 class="text-3xl font-extrabold text-on-surface">42.1%</h3>
+<div class="mt-4 flex gap-1">
+<div class="h-8 flex-1 bg-tertiary/10 rounded-sm"></div>
+<div class="h-10 flex-1 bg-tertiary/20 rounded-sm"></div>
+<div class="h-12 flex-1 bg-tertiary/40 rounded-sm"></div>
+<div class="h-14 flex-1 bg-tertiary/60 rounded-sm"></div>
+<div class="h-16 flex-1 bg-tertiary/80 rounded-sm"></div>
+</div>
+</div>
+<!-- CTR -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined">ads_click</span>
+</div>
+<span class="text-xs font-bold text-error bg-error-container/10 px-2 py-1 rounded-full">-1.2%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">CTR</p>
+<h3 class="text-3xl font-extrabold text-on-surface">18.5%</h3>
+<p class="mt-4 text-[10px] text-on-surface-variant leading-tight">Average conversion per unique link click tracked across all active channels.</p>
+</div>
+</section>
+<!-- Main Data Table Container -->
+<section class="bg-surface-container-low rounded-3xl p-1 overflow-hidden">
+<div class="bg-surface-container-lowest rounded-[22px] overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center border-b border-surface-container">
+<h2 class="text-xl font-bold text-on-surface">Voucher Management</h2>
+<div class="flex items-center gap-4">
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-bold bg-white text-primary rounded-md shadow-sm">All</button>
+<button class="px-4 py-1.5 text-xs font-bold text-on-surface-variant hover:text-on-surface">Active</button>
+<button class="px-4 py-1.5 text-xs font-bold text-on-surface-variant hover:text-on-surface">Expired</button>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Voucher Code</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Status</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">Usage count</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Expiry date</th>
+<th class="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary-dim">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+</div>
+<span class="font-mono font-bold text-on-surface">WINTER-2024-OFF</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                            Active
+                                        </span>
+</td>
+<td class="px-8 py-5 text-center">
+<span class="text-sm font-semibold text-on-surface">1,240</span>
+<span class="text-[10px] text-on-surface-variant ml-1">/ 2000</span>
+</td>
+<td class="px-8 py-5">
+<span class="text-sm text-on-surface-variant">Dec 31, 2024</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit_note</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary-dim">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+</div>
+<span class="font-mono font-bold text-on-surface">ZALO-FLASH-SALE</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40"></span>
+                                            Expired
+                                        </span>
+</td>
+<td class="px-8 py-5 text-center">
+<span class="text-sm font-semibold text-on-surface">5,000</span>
+<span class="text-[10px] text-on-surface-variant ml-1">/ 5000</span>
+</td>
+<td class="px-8 py-5">
+<span class="text-sm text-on-surface-variant">Nov 15, 2023</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit_note</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+</div>
+<span class="font-mono font-bold text-on-surface">WELCOME-NEW-USER</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                            Active
+                                        </span>
+</td>
+<td class="px-8 py-5 text-center">
+<span class="text-sm font-semibold text-on-surface">842</span>
+<span class="text-[10px] text-on-surface-variant ml-1">/ Unlimited</span>
+</td>
+<td class="px-8 py-5">
+<span class="text-sm text-on-surface-variant">Jun 30, 2025</span>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit_note</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Create Campaign Overlay (Floating Form Simulation) -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-10">
+<div class="space-y-6">
+<h2 class="text-2xl font-bold text-on-surface tracking-tight">Active Automation Channels</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-6 rounded-2xl bg-white shadow-sm border-2 border-primary-fixed flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">alternate_email</span>
+</div>
+<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded">STABLE</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Email Flow</h4>
+<p class="text-xs text-on-surface-variant">Personalized delivery for large-scale audience groups.</p>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-white shadow-sm border-2 border-transparent flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-full flex items-center justify-center font-bold italic">
+                                    Z
+                                </div>
+<span class="bg-sky-100 text-sky-700 text-[10px] font-bold px-2 py-0.5 rounded">FAST</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Zalo OA</h4>
+<p class="text-xs text-on-surface-variant">Direct messaging for high engagement mobile users.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-effect rounded-3xl p-8 shadow-2xl shadow-primary/5 border border-white">
+<h3 class="text-xl font-bold text-on-surface mb-6">Quick Campaign Draft</h3>
+<form class="space-y-4">
+<div class="space-y-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant px-1">Campaign Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20" placeholder="e.g. Black Friday 2024" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant px-1">Select Channel</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20">
+<option>Email Marketing</option>
+<option>Zalo OA</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant px-1">Select Voucher</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20">
+<option>WINTER-2024-OFF</option>
+<option>WELCOME-NEW-USER</option>
+</select>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full py-4 primary-gradient text-on-primary rounded-xl font-bold text-sm shadow-xl shadow-primary/30 flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">rocket_launch</span>
+                                Launch Campaign
+                            </button>
+</div>
+</form>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Branding Anchor (Internal Detail) -->
+<div class="fixed bottom-6 right-6 z-50">
+<button class="w-14 h-14 rounded-full primary-gradient text-white shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</body></html>
