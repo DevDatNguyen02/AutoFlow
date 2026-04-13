@@ -12,12 +12,12 @@
 - [ ] Voucher Hub & Campaign Execution.
 
 ### Phase 1: Database Schema & Frontend Template Integration
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete and Verified
 **Objective**: Thiết kế và hoàn thiện toàn bộ Database model trong `backend/prisma/schema.prisma`. Chuyển đổi và tích hợp tất cả các mẫu HTML/CSS từ thư mục `/template` vào ứng dụng Next.js.
 **Requirements**: REQ-01, REQ-02, REQ-09
 
 ### Phase 2: User/Customer Core & AI Widget MVP
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete and Verified
 **Objective**: Phát triển các API cốt lõi về Authentication, quản lý Customer và ra mắt Web Widget hiển thị với khả năng kết nối Gemini RAG để tư vấn tự động.
 **Requirements**: REQ-01, REQ-02, REQ-03, REQ-04, REQ-05
 
